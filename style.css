@@ -1,0 +1,37 @@
+:root {
+  /* Using CSS Custom properties */
+  --blu: #79e0ee;
+  --min: #98eecc;
+  --sag: #d0f5be;
+  --mainbackgroundcolor: #fbffdc;
+}
+body {
+  background-color: var(--mainbackgroundcolor);
+}
+
+table,
+th,
+td,
+tr {
+  border: 1px solid var(--sag);
+  border-collapse: collapse;
+  font-family: "Rubik", sans-serif;
+  font-size: 1.3rem;
+  word-wrap: break-word;
+}
+
+table {
+  margin-bottom: 1rem;
+  background-color: var(--blu);
+  width: 100%;
+  display: table;
+  table-layout: fixed;
+  border-collapse: collapse;
+  text-align: center;
+}
+
+th,
+td,
+tr {
+  padding: 0.5rem;
+}
