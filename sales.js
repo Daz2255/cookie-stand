@@ -143,13 +143,19 @@ function renderTable(locations) {
   container.appendChild(table);
 }
 
+// Function for generating random customers
+
 function randomNum(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
+
+// make each store
 
 const seattle = new Location("Seattle", 23, 65, 6.3);
 const tokyo = new Location("Tokyo", 3, 24, 1.2);
 const dubai = new Location("Dubai", 11, 38, 3.7);
 const paris = new Location("Paris", 20, 38, 2.3);
+
+// render table
 
 renderTable([seattle, tokyo, dubai, paris]);
