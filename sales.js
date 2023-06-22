@@ -2,6 +2,11 @@
 console.log("salmon cookies");
 
 const container = document.getElementById("container");
+const locationForm = document.getElementById("locationForm");
+
+function randomNum(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
 
 const hours = [
   "6am",
@@ -20,6 +25,8 @@ const hours = [
   "7pm",
 ];
 
+const locations = [];
+
 function Location(
   storeName,
   minCustPerHour,
@@ -35,8 +42,6 @@ function Location(
   this.totalDailyCookies = 0;
 }
 
-// make prototype for customers each hour
-
 Location.prototype.calcCustomersEachHour = function () {
   for (let i = 0; i < hours.length; i++) {
     this.customersEachHour.push(
@@ -44,8 +49,6 @@ Location.prototype.calcCustomersEachHour = function () {
     );
   }
 };
-
-// make prototype for cookies each hour
 
 Location.prototype.calcCookiesEachHour = function () {
   for (let i = 0; i < hours.length; i++) {
@@ -57,16 +60,13 @@ Location.prototype.calcCookiesEachHour = function () {
   }
 };
 
-// Function to make table
-
-function renderTable(locations) {
+function renderTable() {
   const table = document.createElement("table");
   const thead = document.createElement("thead");
   const tbody = document.createElement("tbody");
   const tfoot = document.createElement("tfoot");
 
   // Make the header row
-
   const headerRow = document.createElement("tr");
   const emptyHeaderCell = document.createElement("th");
   headerRow.appendChild(emptyHeaderCell);
@@ -84,7 +84,7 @@ function renderTable(locations) {
   thead.appendChild(headerRow);
   table.appendChild(thead);
 
-  // Make the table body rows
+  // Make the table body rows for existing locations
   for (let i = 0; i < locations.length; i++) {
     const location = locations[i];
     location.calcCustomersEachHour();
@@ -109,7 +109,6 @@ function renderTable(locations) {
   }
 
   // Make a footer row for hour totals
-
   const footerRow = document.createElement("tr");
   const footerLabelCell = document.createElement("td");
   footerLabelCell.textContent = "Total Cookies";
@@ -131,8 +130,7 @@ function renderTable(locations) {
     totalOfTotals += totalCookies;
   }
 
-  // add a footer cell for total of totals
-
+  // Add a footer cell for total of totals
   const totalOfTotalsCell = document.createElement("td");
   totalOfTotalsCell.textContent = totalOfTotals;
   footerRow.appendChild(totalOfTotalsCell);
@@ -140,22 +138,41 @@ function renderTable(locations) {
   tfoot.appendChild(footerRow);
   table.appendChild(tbody);
   table.appendChild(tfoot);
-  container.appendChild(table);
+
+  if (container.firstChild) {
+    container.replaceChild(table, container.firstChild);
+  } else {
+    container.appendChild(table);
+  }
 }
 
-// Function for generating random customers
+locationForm.addEventListener("submit", function (e) {
+  e.preventDefault();
 
-function randomNum(min, max) {
-  return Math.floor(Math.random() * (max - min + 1) + min);
-}
+  const storeNameInput = document.getElementById("storeName");
+  const minCustPerHourInput = document.getElementById("minCustPerHour");
+  const maxCustPerHourInput = document.getElementById("maxCustPerHour");
+  const avgCookiesPerHourInput = document.getElementById("avgCookiesPerHour");
 
-// make each store
+  const newLocation = new Location(
+    storeNameInput.value,
+    parseInt(minCustPerHourInput.value),
+    parseInt(maxCustPerHourInput.value),
+    parseFloat(avgCookiesPerHourInput.value)
+  );
 
+  locations.push(newLocation);
+  renderTable();
+  locationForm.reset();
+});
+
+// Info for the locations
 const seattle = new Location("Seattle", 23, 65, 6.3);
 const tokyo = new Location("Tokyo", 3, 24, 1.2);
 const dubai = new Location("Dubai", 11, 38, 3.7);
 const paris = new Location("Paris", 20, 38, 2.3);
+const lima = new Location("Lima", 2, 16, 4.6);
 
-// render table
+locations.push(seattle, tokyo, dubai, paris, lima);
 
-renderTable([seattle, tokyo, dubai, paris]);
+renderTable();

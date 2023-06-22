@@ -7,8 +7,39 @@
 }
 body {
   background-color: var(--mainbackgroundcolor);
+  display: flex;
+  flex-direction: column;
+}
+.header-container {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+.content-section {
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
 }
 
+#logo {
+  max-width: 250px;
+}
+h1 {
+  font-family: "Rubik", sans-serif;
+  font-size: 3rem;
+}
+nav ul {
+  display: flex;
+}
+
+p {
+  max-width: 500px;
+}
+
+footer {
+  background-color: var(--mainbackgroundcolor);
+}
 table,
 th,
 td,
@@ -34,4 +65,57 @@ th,
 td,
 tr {
   padding: 0.5rem;
+}
+
+#locationForm {
+  display: flex;
+  justify-items: flex-end;
+  padding: 5px;
+  margin: 10px;
+}
+
+/* Style the form container */
+.form-container {
+  margin-bottom: 20px;
+}
+
+/* Style the form fields */
+.form-field {
+  margin-bottom: 10px;
+}
+
+/* Style the form labels */
+.form-label {
+  display: block;
+  font-weight: bold;
+  margin: 5px;
+  padding: 2px;
+  font-family: Rubik
+      ",
+    sans-serif;
+    font-size: 1rem;
+    text-align: center;
+}
+
+/* Style the form input fields */
+.form-input {
+  width: 100%;
+  padding: 5px;
+  border: 1px solid var(--blu);
+  border-radius: 4px;
+  font-family: Rubik",
+    sans-serif;
+  font-size: 2rem;
+  text-align: center;
+}
+
+/* Style the form submit button */
+.form-submit {
+  padding: 10px 20px;
+  margin: 10px;
+  background-color: var(--min);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
 }

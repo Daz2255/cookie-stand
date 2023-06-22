@@ -8,7 +8,42 @@
     <title>Document</title>
   </head>
   <body>
+    <h2>Fishy Cookie Sales</h2>
     <div id="container"></div>
+
+    <form id="locationForm">
+      <label class="form-label" for="storeName">Store Name:</label>
+      <input class="form-input" type="text" id="storeName" required /><br />
+      <label class="form-label" for="minCustPerHour"
+        >Minimum Customers per Hour:</label
+      >
+      <input
+        class="form-input"
+        type="number"
+        id="minCustPerHour"
+        required
+      /><br />
+      <label class="form-label" for="maxCustPerHour"
+        >Maximum Customers per Hour:</label
+      >
+      <input
+        class="form-input"
+        type="number"
+        id="maxCustPerHour"
+        required
+      /><br />
+      <label class="form-label" for="avgCookiesPerHour"
+        >Average Cookies per Hour:</label
+      >
+      <input
+        class="form-input"
+        type="number"
+        step="0.1"
+        id="avgCookiesPerHour"
+        required
+      /><br />
+      <button class="form-submit" type="submit">Add Location</button>
+    </form>
 
     <script src="sales.js"></script>
   </body>
